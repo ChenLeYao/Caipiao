@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>迪士尼彩乐园</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+		<meta name="apple-mobile-web-app-capable" content="no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/layui.css" />
+		<link rel="stylesheet" href="../css/swiper.min.css" />
+		 <link rel="stylesheet" type="text/css" href="../css/mobileSelect.css">
+	</head>
+	<body class="theme">
+		<div class="dish_body">
+			<div class="dish_header">
+				<a class="back" href="javascript:window.history.back(-1)"></a>
+				投注记录<span class="filter"  onclick="filter();">筛选</span>
+			</div>
+			<div class="re-name">
+		    	<p>每页显示<span>10</span>条数据</p>
+		    </div>
+		   <table class="his-table">
+		   	<thead>
+		   		<tr>
+		   			<td>彩种</td>
+		   			<td>期数</td>
+		   			<td>玩法</td>
+		   			<td>下注金额</td>
+		   			<td>输赢金额</td>
+		   		</tr>
+		   	</thead>
+		   	
+		   	<tbody>
+		   		<tr>
+		   			<td>北京pk10</td>
+		   			<td>434545</td>
+		   			<td>玩法</td>
+		   			<td>1000</td>
+		   			<td>2000</td>
+		   		</tr>
+		   		<tr>
+		   			<td>北京pk10</td>
+		   			<td>434545</td>
+		   			<td>玩法</td>
+		   			<td>1000</td>
+		   			<td>2000</td>
+		   		</tr>
+		   		<tr>
+		   			<td>北京pk10</td>
+		   			<td>434545</td>
+		   			<td>玩法</td>
+		   			<td>1000</td>
+		   			<td>2000</td>
+		   		</tr>
+		   		<tr>
+		   			<td>北京pk10</td>
+		   			<td>434545</td>
+		   			<td>玩法</td>
+		   			<td>1000</td>
+		   			<td>2000</td>
+		   		</tr>
+		   		<tr>
+		   			<td>北京pk10</td>
+		   			<td>434545</td>
+		   			<td>玩法</td>
+		   			<td>1000</td>
+		   			<td>2000</td>
+		   		</tr>
+		   		<tr>
+		   			<td>北京pk10</td>
+		   			<td>434545</td>
+		   			<td>玩法</td>
+		   			<td>1000</td>
+		   			<td>2000</td>
+		   		</tr>
+		   		<tr>
+		   			<td>北京pk10</td>
+		   			<td>434545</td>
+		   			<td>玩法</td>
+		   			<td>1000</td>
+		   			<td>2000</td>
+		   		</tr>
+		   		<tr>
+		   			<td>北京pk10</td>
+		   			<td>434545</td>
+		   			<td>玩法</td>
+		   			<td>1000</td>
+		   			<td>2000</td>
+		   		</tr>
+		   		<tr>
+		   			<td>北京pk10</td>
+		   			<td>434545</td>
+		   			<td>玩法</td>
+		   			<td>1000</td>
+		   			<td>2000</td>
+		   		</tr>
+		   		<tr>
+		   			<td>北京pk10</td>
+		   			<td>434545</td>
+		   			<td>玩法</td>
+		   			<td>1000</td>
+		   			<td>2000</td>
+		   		</tr>
+		   	</tbody>
+		   </table>
+		</div>
+		<div class="filter-right" >
+			<div class="re-name">
+		    	<p>时间</p>
+		    	<ul class="his-ul">
+			    	<li id="select1" style="width: 40%;">起始时间</li>
+			    	<li style="width: 0.5rem;background:none;">至</li>
+					<li id="select2" style="width: 40%;">结束时间</li>
+				</ul>
+		    </div>
+			<ul>
+				<li id="select1"></li>
+				<li id="select2"></li>
+			</ul>
+			<div class="re-name">
+		    	<p>分类</p>
+		    </div>
+			<ul class="his-ul">
+				<li class="active">北京pk10</li>
+				
+				<li>幸运飞艇</li>
+				<li>飞艇牛牛</li>
+				<li>腾讯分分彩</li>
+				<li>悉尼三分彩</li>
+				<li>新北京幸运28</li>
+				<li>重庆时时彩</li>
+				<li>新加拿大28</li>
+				<li>极速赛车</li>
+				<li>新疆时时彩</li>
+				<li>澳洲幸运5</li>
+			</ul>
+			
+			<div class="his-tab">
+				<div class="reset">重置</div>
+				<div class="confirm" onclick="filterOut();">确认</div>
+			</div>
+		</div>
+		<!--遮罩层-->
+        <div class="bg" onclick="filterOut();">
+        </div>
+       <div id="PageList" style="margin-left: 20px;"></div>
+		<script type="text/javascript" src="../js/rem.js"></script>
+		<script type="text/javascript" src="../js/layui.js"></script>
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script src="../js/mobileSelect.js" type="text/javascript"></script>
+       <script src="../js/jquery1.8.3.min.js" type="text/javascript"></script>
+		<script>
+			layui.use(['laypage', 'form', 'laydate'], function() {
+				var laypage = layui.laypage;
+				var form = layui.form;
+				var laydate = layui.laydate;
+
+				//监听提交
+				form.on('submit(formDemo)', function(data) {
+					layer.msg(JSON.stringify(data.field));
+					return false;
+				});
+				//执行一个laypage实例
+				laypage.render({
+					elem: 'PageList' //注意，这里的 test1 是 ID，不用加 # 号
+						,
+					count: 50 //数据总数，从服务端得到
+				});
+
+				laydate.render({
+					elem: '#Betting_start' //指定元素
+						,
+					value: new Date(1534766888000)
+				});
+				laydate.render({
+					elem: '#Betting_end' //指定元素
+						,
+					value: new Date(1534766888000)
+				});
+			});
+			//var filter = document.querySelector('.filter');
+			function filter(){
+				var filterBox = document.querySelector('.filter-right');
+				var bg = document.querySelector('.bg');
+				!filterBox.classList.contains('active') && (filterBox.classList.add('active'));
+				!bg.classList.contains('active') && (bg.classList.add('active'));
+			};
+			function filterOut(){
+				var filterBox = document.querySelector('.filter-right');
+				var bg = document.querySelector('.bg');
+				filterBox.classList.contains('active') && (filterBox.classList.remove('active'));
+				bg.classList.contains('active') && (bg.classList.remove('active'));
+			}
+			
+			
+		var numArr1 = ['2015','2016','2017','2018','2019'];
+		var numArr2 = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+		var numArr3 = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+		
+		var mobileSelect1 = new MobileSelect({
+		    trigger: '#select1',
+		    title: '选择时间',
+		    wheels: [
+		                {data: numArr1},
+		                {data: numArr2},
+		                {data: numArr3}
+		            ],
+		    position:[0, 0, 0],
+		    //transitionEnd:function(indexArr, data){
+		    //    console.log(data);
+		    //},
+		    callback:function(indexArr, data){
+		     	//$("#trigger3").html("ccccccccccccccccccccc");
+				
+		    }
+		});
+		
+		
+		var mobileSelect2 = new MobileSelect({
+		    trigger: '#select2',
+		    title: '选择时间',
+		    wheels: [
+		                {data: numArr1},
+		                {data: numArr2},
+		                {data: numArr3}
+		            ],
+		    position:[0, 0, 0],
+		    //transitionEnd:function(indexArr, data){
+		    //    console.log(data);
+		    //},
+		    callback:function(indexArr, data){
+		     	//$("#trigger3").html("ccccccccccccccccccccc");
+				
+		    }
+		});
+		</script>
+	</body>
+
+</html>

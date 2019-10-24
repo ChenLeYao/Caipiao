@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>迪士尼彩乐园</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+		<meta name="apple-mobile-web-app-capable" content="no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/swiper.min.css" />
+	</head>
+	<body class="theme">
+		<div class="dish_body">
+			<div class="dish_header">
+				<a class="back" href="javascript:window.history.back(-1)"></a>
+				消息中心</div>
+		     <div class="mes-list">
+		     	<ul class="mes-list-ul">
+		     		<!--<li>
+		     			<a href="MessageDetail.html">
+		     				<p>系统消息<span>8月26日</span></p>
+		     			    <div>尊敬的玩家，恭喜您注册成功<span>已读</span></div>
+		     			</a>
+		     		</li>-->
+		     		
+		     	</ul>
+		     </div>
+		</div>
+		
+     
+		<script type="text/javascript" src="../js/rem.js"></script>
+		<script type="text/javascript" src="../js/layui.js"></script>
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script>
+			PublicAjax('POST' , '/Banner/List' ,'type=1' , function(e){
+				var listul = document.querySelector('.mes-list-ul'), list,length;
+				e.code == 0 && ( list = e.data ,  length = e.data.length);
+				if(list){
+					for(var i = 0;i< length ;i++){
+						listul.innerHTML += `<li>
+		     			<a href="javascript:ToDetail(${list[i].Id});">
+		     				<p>${list[i].Title}<span>8月26日</span></p>
+		     			    <div>${list[i].Content}<span>已读</span></div>
+		     			</a>
+		     		</li>`;
+					}
+				}
+			});
+			
+			
+			function ToDetail(id){
+				localStorage.setItem("newid", id);
+			}
+			
+		</script>
+	</body>
+
+</html>

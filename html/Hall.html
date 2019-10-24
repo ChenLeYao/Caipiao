@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>迪士尼彩乐园</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+		<meta name="apple-mobile-web-app-capable" content="no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/layui.css" />
+	</head>
+
+	<body class="dish_hall">
+		<div class="dish_body">
+			<div class="dish_header">购彩大厅</div>
+			<div class="hall_nav">
+				<ul class="hall_nav_ul">
+					
+					<!--<li class="active">
+						<a>
+							<img src="../img/icon/hall_1.png">
+						</a>
+						<span>全部</span>
+					</li>
+					<li>
+						<a>
+							<img src="../img/icon/hall_2.png">
+						</a>
+						<span>PK10系列</span>
+					</li>
+					<li>
+						<a>
+							<img src="../img/icon/hall_3.png">
+						</a>
+						<span>时时彩</span>
+					</li>-->
+				</ul>
+				<div class="bottom_line"></div>
+			</div>
+			
+			<div class="hall_content">
+				<div class="hall_content_wrap"> 
+					<!--<ul class="hall_content_item">
+						<li class="hall_con">
+							
+								<div >
+									<div class="hall_con_child"  onclick="TicketDetail();">
+									<div>
+										<img src="../img/icon/brand_1.jpeg">
+									</div>
+									<div>
+										<h3>北京PK10</h3>
+										<p> 距离第738479期截止还有<span>00:11:33</span></p>
+									</div>
+								</div>
+							
+								<ul class="hall_number">
+									<li>2</li>
+									<li>2</li>
+									<li>2</li>
+									<li>2</li>
+									<li>2</li>
+									<li>2</li>
+									<li>2</li>
+								</ul>
+								<div class='hall_tab'>
+									<div><img src="../img/icon/ic-1.png"><a  href="./Trend.html?type=0">开奖结果</a></div>
+									<div><img src="../img/icon/ic-2.png"><a  href="./Trend.html?type=1">玩法走势</a></div>
+									<div><img src="../img/icon/ic-3.png"><a  href="./Trend.html?type=2">基本说明</a></div>
+							    </div>
+							</div>
+						</li>
+						
+					</ul>-->
+					
+					<!--<ul class="hall_content_item">
+						
+						
+					</ul>
+					
+					<ul class="hall_content_item">
+						
+					</ul>-->
+					
+			    </div>
+			</div>
+		</div>
+		<div class="dish">
+			<a  href="../Index.html">
+				<img src="../img/icon/index_font_1.png">
+				<span>首页</span>
+			</a>
+			<a class="active" href="./Hall.html">
+				<img src="../img/icon/index_font_2_on.png">
+				<span>彩票大厅</span>
+			</a>
+			<a href="./App.html">
+				<img src="../img/icon/index_font_6.png">
+				<span>app</span>
+			</a>
+			<a  href="./Turntable.html">
+				<img src="../img/icon/index_font_5.png">
+				<span>大转盘</span>
+			</a>
+			<a href="javascript:TipMessage();">
+				<img src="../img/icon/index_font_4.png">
+				<span>分享</span>
+			</a>
+			<a href="./User.html">
+				<img src="../img/icon/index_font_3.png">
+				<span>我的</span>
+			</a>
+		</div>
+		<script type="text/javascript" src="../js/rem.js"></script>
+		<script type="text/javascript" src="../js/layui.js"></script>
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script>
+			var hall_content =  document.querySelector('.hall_content_wrap');
+			var nav_ul = document.querySelector('.hall_nav_ul');
+			function GetNavHtml(){
+				hall_content.style.width = arrayE.length*100 + '%';
+				for(var i =0 ;i < arrayE.length ; i++){
+					var li = document.createElement('li');
+					i == 0 && ( li.classList.add('active'));
+					var ul = document.createElement('ul');
+					ul.style.width = document.querySelector('.hall_content').offsetWidth + 'px';
+					var confirm = '';
+					li.innerHTML = Hrt_0(arrayE[i].name ,arrayE[i].path );
+                    for(var k = 0; k < arrayE[i].content.length ; k++){
+                    	confirm += Hrt(arrayE[i].content[k].title ,arrayE[i].content[k].path );
+                    };
+                    ul.innerHTML = confirm;
+                    ul.classList.add('hall_content_item');
+                    nav_ul.appendChild(li); 
+                    hall_content.appendChild(ul); 
+				};
+				
+				NavInIt();
+			};
+			GetNavHtml();
+			function NavInIt (){
+				var NavLi = document.querySelectorAll('.hall_nav_ul li');
+				var NavUl = document.querySelector('.hall_nav_ul');
+				var HallNav = document.querySelector('.hall_nav');
+				var Hallnumber = (NavUl.offsetWidth - HallNav.offsetWidth)/NavLi.length - 1 ;
+				var bottomLine = document.querySelector('.bottom_line');
+				var offsetWidth = NavLi[0].offsetWidth;
+				var contentWrap =  document.querySelector('.hall_content_wrap');
+				var WrapWidth = contentWrap.querySelectorAll('.hall_content_item')[0].offsetWidth;
+				for(var i = 0; i < NavLi.length; i++) {
+					NavLi[i].index = i ;
+					NavLi[i].onclick = function() {
+				    if( NavUl.offsetWidth > HallNav.offsetWidth ){
+				    	 NavUl.style.left = (-1 *this.index *  Hallnumber) + 'px';
+				    	 if( this.index == NavLi.length -1 ){
+				    	 	NavUl.style.left = HallNav.offsetWidth - NavUl.offsetWidth + 'px';
+				    	 } 
+			
+				    }
+				  
+//				    if ( parseInt(NavUl.style.left == NaN)){
+//				    	bottomLine.style.left = (offsetWidth * this.index  +  parseInt(NavUl.style.left) )+ 'px';
+//				    }else{
+//				    	bottomLine.style.left = (offsetWidth * this.index )+ 'px';
+//				    }
+				    bottomLine.style.left = (offsetWidth * this.index  +  parseInt(NavUl.style.left) )+ 'px';
+					
+					contentWrap.style.left = WrapWidth* this.index *-1 + 'px'; 
+					document.querySelector('.hall_nav_ul .active').classList.remove('active');
+					if( !this.classList.contains('active') ) this.classList.add('active');
+					
+				  }
+				}
+			}
+			
+			
+			
+			function Hrt (name , path ){
+				var content =`<li class="hall_con">
+							
+								<div >
+									<div class="hall_con_child"  onclick="TicketDetail();">
+									<div>
+										<img src="${path}">
+									</div>
+									<div>
+										<h3>${name}</h3>
+										<p> 距离第738479期截止还有<span>00:11:33</span></p>
+									</div>
+								</div>
+							
+								<ul class="hall_number">
+									<li>2</li>
+									<li>2</li>
+									<li>2</li>
+									<li>2</li>
+									<li>2</li>
+									<li>2</li>
+									<li>2</li>
+								</ul>
+								<div class='hall_tab'>
+									<div><img src="../img/icon/ic-1.png"><a  href="./Trend.html?type=0">开奖结果</a></div>
+									<div><img src="../img/icon/ic-2.png"><a  href="./Trend.html?type=1">玩法走势</a></div>
+									<div><img src="../img/icon/ic-3.png"><a  href="./Trend.html?type=2">基本说明</a></div>
+							    </div>
+							</div>
+						</li>`;
+						return content;
+			};
+			
+			function Hrt_0 (name , path ){
+				var content =`<a>
+							<img src="${path}">
+						</a>
+						<span>${name}</span>`;
+					
+					return content;
+			}
+		</script>
+	</body>
+
+</html>

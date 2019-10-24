@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>迪士尼彩乐园</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+		<meta name="apple-mobile-web-app-capable" content="no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta content="telephone=no" name="format-detection" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mobileSelect.css">
+		<style>
+			.Oddswrap{
+				position: fixed;
+				top:0.9rem;
+				width: 100%;
+				left: 0;
+				z-index: 2000;
+			}
+			.dish_header{
+				position: fixed;
+				top:0;
+				left: 0;
+				width: 100%;
+				z-index: 2000;
+			}
+			.state-time{
+				    margin-top: 0.6rem;
+			}
+		</style>
+	</head>
+
+	<body class="theme">
+		<div class="dish_body">
+			<div class="dish_header">
+				<a class="back" href="javascript:window.history.back(-1)"></a>
+				28投注报表</div>
+				<div class="Oddswrap">
+					<ul class="Odds">
+						<li class="active">2.5赔率厅</li>
+						<li>组合4.2  4.6 赔率厅</li>
+						<li>组合4.2  5.0 赔率厅</li>
+						<li>大小2.8组合6.0 赔率厅</li>
+				    </ul>
+				    <span class="menu1"></span>
+				</div>
+			<ul class="state-date">
+				<li class="active">昨天</li>
+				<li>今天</li>
+				<li>本周</li>
+				<li>上周</li>
+				<li>本月</li>
+				<li>上月</li>
+			</ul>
+
+			<ul class="state-time">
+				<li id="Select1">2019-00-00</li>
+				<li>--</li>
+				<li id="Select2">2019-00-00</li>
+				<li>查询</li>
+			</ul>
+
+			<table class="state-table">
+				<thead>
+					<tr>
+						<td>时间</td>
+						<td>充值</td>
+						<td>提现</td>
+						<td>投注</td>
+						<td>中奖</td>
+						<td>盈亏</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>汇总</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+        <!--遮罩层-->
+        <div class="bg">
+        </div>
+        
+        
+          <!--  右上角菜单-->
+        <div class="packline">
+        	<ul class="packchild" >
+				<li class="active">2.5赔率厅</li>
+				<li>组合4.2  4.6 赔率厅</li>
+				<li>组合4.2  5.0 赔率厅</li>
+				<li>大小2.8组合6.0 赔率厅</li>
+			</ul>
+        </div>
+        
+		<script type="text/javascript" src="../js/rem.js"></script>
+		<script type="text/javascript" src="../js/layui.js"></script>
+		<script src="../js/mobileSelect.js" type="text/javascript"></script>
+		<script src="../js/public.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var numArr1 = ['2015', '2016', '2017', '2018', '2019'];
+			var numArr2 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+			var numArr3 = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+
+			var Select1 = new MobileSelect({
+				trigger: '#Select1',
+				title: '选择时间',
+				wheels: [{ data: numArr1},{data: numArr2},{data: numArr3}
+				],
+				position: [0, 0, 0],
+				//transitionEnd:function(indexArr, data){
+				//    console.log(data);
+				//},
+				callback: function(indexArr, data) {
+					//$("#trigger3").html("ccccccccccccccccccccc");
+
+				}
+			});
+
+			var Select2 = new MobileSelect({
+				trigger: '#Select2',
+				title: '选择时间',
+				wheels: [{ data: numArr1},{data: numArr2},{data: numArr3}
+				],
+				position: [0, 0, 0],
+				//transitionEnd:function(indexArr, data){
+				//    console.log(data);
+				//},
+				callback: function(indexArr, data) {
+					//$("#trigger3").html("ccccccccccccccccccccc");
+
+				}
+			});
+			/**
+			 * 参数说明
+			 * @param trigger(必填参数) 触发对象的id/class/tag
+			 * @param wheels(必填参数)  数据源,需要显示的数据
+			 * @param title 控件标题
+			 * @param position 初始化定位
+			 * @param callback 选择成功后触发的回调函数，返回indexArr(选中的选项索引)、data(选中的数据)
+			 * @param transitionEnd 每一次手势滑动结束后触发的回调函数,返回indexArr(当前选中的选项索引)、data(选中的数据)
+			 */
+			var NowDate = new Date();
+            var Select1 = document.querySelector('#Select1');
+            var Select2 = document.querySelector('#Select2');
+			var dateArray = GetDate(NowDate);
+			var menu = document.querySelector('.menu1');
+			var pack = document.querySelector('.packline');
+			var bg = document.querySelector('.bg');
+			Select1.innerHTML = dateArray[0][0];
+			Select2.innerHTML = dateArray[0][1];
+			SetRange(dateArray);
+		    DomTab('Odds', function(index) {
+				var dishItem = document.querySelector('.Odds .active');
+				dishItem.classList.remove('active');
+				document.querySelectorAll('.Odds li')[index].classList.add('active');
+			});
+			
+			
+			menu.onclick = function(){
+				!pack.classList.contains('active')  &&( pack.classList.add('active')); 
+				!bg.classList.contains('active')  &&( bg.classList.add('active')); 
+			};
+			
+			bg.onclick = function(){
+				pack.classList.contains('active')  &&( pack.classList.remove('active')); 
+				bg.classList.contains('active')  &&( bg.classList.remove('active')); 
+			}
+		</script>
+		
+	</body>
+
+</html>
